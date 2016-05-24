@@ -2,32 +2,31 @@ function printInventory(inputs){
     var cartItems = [];
     var total = 0;
     cartItems = jasonToCartItems(inputs);
-    total = adjustCartItems(cartItems);
+    total = calculateCartItems(cartItems);
     printCartItems(cartItems,total);
 }
-function jasonToCartItems(jason) {
+function jasonToCartItems(jasons) {
     var cartItems = [];
-    for(var i = 0,len = jason.length;i < len;i++){
-        pushcartItems(jason[i],cartItems);
+    for(var i = 0,len = jasons.length;i < len;i++){
+        pushCartItem(jasons[i],cartItems);
     }
     return cartItems;
 }
-function pushcartItems(input,array){
-    if (array[input.barcode]){
-        array[input.barcode].count++;
+function pushCartItem(jason,array){
+    if (array[jason.barcode]){
+        array[jason.barcode].count++;
     } else {
-        array[input.barcode] = {};
-        array[input.barcode].name = input.name;
-        array[input.barcode].count = 1;
-        array[input.barcode].unit = input.unit;
-        array[input.barcode].price = input.price;
-        array[input.barcode].barcode = input.barcode;
+        array[jason.barcode] = {};
+        array[jason.barcode].name = jason.name;
+        array[jason.barcode].count = 1;
+        array[jason.barcode].unit = jason.unit;
+        array[jason.barcode].price = jason.price;
+        array[jason.barcode].barcode = jason.barcode;
     }
 }
-function adjustCartItems(cartItems) {
+function calculateCartItems(cartItems) {
     for(i in cartItems){
-        cartItems[i].price = cartItems[i].price;
-        cartItems[i].subtotal = (cartItems[i].count * cartItems[i].price);
+        cartItems[i].subtotal = cartItems[i].count * cartItems[i].price;
     }
     var total = 0.00;
     for(i in cartItems){

@@ -1,0 +1,11 @@
+Attention:
+    1.运算符号前后应空格
+    2.new Array（）= []  new object = {}
+    3.变量不要定义成一行
+    4.避免使用for in：
+        遍历数组用for（；；）循环
+        遍历对象用。。。
+        高级函数foreach（）
+    5.不要在一个单元（比如一个for循环）do两件事
+    6.view和model混合
+    7.命名贴合
